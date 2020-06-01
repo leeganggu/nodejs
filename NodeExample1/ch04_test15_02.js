@@ -9,7 +9,7 @@ fs.exists(outname, function (exists) {
     if (exists) {
     	fs.unlink(outname, function (err) {
     		if (err) throw err;
-    		logger.info('기존 파일 [' + outname +'] 삭제함.');
+			logger.info('기존 파일 [' + outname +'] 삭제함.');
     	});
     }
     
