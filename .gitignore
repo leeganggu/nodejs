@@ -4,4 +4,5 @@
 /bower_components/
 /node_modules/
 /NodeExample1/node_modules/
+/ExpressExample/
 *.json
