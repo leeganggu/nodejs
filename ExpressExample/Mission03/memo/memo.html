@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>나의 메모</title>
+        <style>
+            table{
+                border: 1px solid black;
+            }
+        </style>
+    </head>
+    <body>
+        <form method="POST" enctype="multipart/form-data" action="/process/memo">
+            <table>
+                <tr style="border: 1px solid black;">
+                    <td>나의 메모</td>
+                </tr>
+                <tr>
+                    <td>작  성  자 </td>
+                    <td><input type="text" name="writer"></td>
+                </tr>
+                <tr>
+                    <td>작성일시 </td>
+                    <td><input type="date" name="date"></td>
+                </tr>
+                <tr>
+                    <td>내용</td>
+                </tr>
+                <tr>
+                    <td colspan="2"><input type="text" name="contents" style="width: 90%; height: 100px;"></td>
+                </tr>
+                <tr>
+                    <td><label>사진</label></td>
+                    <td><input type="file" name="photo"></td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="submit" value="저장" name="submit">
+                        <input type="button" value="닫기" onclick="closeBtn();">
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </body>
+    <script>
+        function closeBtn(){
+            console.log('닫기');
+            self.opener = self;
+            window.close();
+        }
+    </script>
+</html>
