@@ -7,6 +7,7 @@
  * @author Mike
  */
  
+
 // Express 기본 모듈 불러오기
 var express = require('express')
   , http = require('http')
@@ -24,6 +25,7 @@ var expressErrorHandler = require('express-error-handler');
 // Session 미들웨어 불러오기
 var expressSession = require('express-session');
   
+
 // 모듈로 분리한 설정 파일 불러오기
 var config = require('./config');
 
@@ -33,14 +35,17 @@ var database = require('./database/database');
 // 모듈로 분리한 라우팅 파일 불러오기
 var route_loader = require('./routes/route_loader');
 
+ 
+
+
 // 익스프레스 객체 생성
 var app = express();
 
 
 //===== 뷰 엔진 설정 =====//
 app.set('views', __dirname + '/views');
-app.set('view engine', 'ejs');
-console.log('뷰 엔진이 ejs로 설정되었습니다.');
+app.set('view engine', 'pug');
+console.log('뷰 엔진이 pug로 설정되었습니다.');
 
 
 //===== 서버 변수 설정 및 static으로 public 폴더 설정  =====//
@@ -77,7 +82,7 @@ route_loader.init(app, express.Router());
 //===== 404 에러 페이지 처리 =====//
 var errorHandler = expressErrorHandler({
  static: {
-   '404': 'ViewExample/public/404.html'
+   '404': './public/404.html'
  }
 });
 
