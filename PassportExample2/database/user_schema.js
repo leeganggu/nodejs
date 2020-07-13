@@ -13,12 +13,12 @@ Schema.createSchema = function(mongoose) {
 	
 	// 스키마 정의
 	var UserSchema = mongoose.Schema({
-		email : {type : String, 'default' : ''}
+		email: {type: String, 'default':''}
 	    , hashed_password: {type: String, required: true, 'default':''}
 	    , name: {type: String, index: 'hashed', 'default':''}
 	    , salt: {type:String, required:true}
 	    , created_at: {type: Date, index: {unique: false}, 'default': Date.now}
-	    , updated_at: {type: Date, index: {unique: false}, 'default': Date.now}
+	    , updated_at: {type: Date, index: {unique: false}, 'default': Date.now} 
 	});
 	
 	// password를 virtual 메소드로 정의 : MongoDB에 저장되지 않는 편리한 속성임. 특정 속성을 지정하고 set, get 메소드를 정의함
@@ -74,20 +74,17 @@ Schema.createSchema = function(mongoose) {
 		}
 	})
 	
-	// 필수 속성에 대한 유효성 확인 (길이값 체크)
-	UserSchema.path('name').validate(function (name) {
-		return name.length;
-	}, 'name 칼럼의 값이 없습니다.');
+	// 입력된 칼럼의 값이 있는지 확인
+	UserSchema.path('email').validate(function (email) {
+		return email.length;
+	}, 'email 칼럼의 값이 없습니다.');
 	
 	UserSchema.path('hashed_password').validate(function (hashed_password) {
 		return hashed_password.length;
 	}, 'hashed_password 칼럼의 값이 없습니다.');
-
-	UserSchema.path('email').validate(function(email){
-		return email.length;
-	}, 'email 칼럼의 값이 없습니다.');
-   
-	// 스키마에 static 메소드 추가
+	
+	
+	// 모델 객체에서 사용할 수 있는 메소드 정의
 	UserSchema.static('findByEmail', function(email, callback) {
 		return this.find({email:email}, callback);
 	});
